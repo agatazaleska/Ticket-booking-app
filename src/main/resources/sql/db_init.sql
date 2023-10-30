@@ -70,24 +70,69 @@ CREATE TABLE `seat_availability` (
 --
 
 INSERT INTO `room` VALUES
-    (1, 15, 20),
-    (2, 10, 15),
-    (3, 13, 20);
+    (1, 3, 4),
+    (2, 4, 4);
+
+INSERT INTO `seat` VALUES
+    (1, 1, 'A', 1),
+    (2, 1, 'A', 2),
+    (3, 1, 'A', 3),
+    (4, 1, 'A', 4),
+    (5, 1, 'B', 1),
+    (6, 1, 'B', 2),
+    (7, 1, 'B', 3),
+    (8, 1, 'B', 4),
+    (9, 1, 'C', 1),
+    (10, 1, 'C', 2),
+    (11, 1, 'C', 3),
+    (12, 1, 'C', 4);
+
+INSERT INTO `seat` VALUES
+    (13, 1, 'A', 1),
+    (14, 1, 'A', 2),
+    (15, 1, 'A', 3),
+    (16, 1, 'A', 4),
+    (17, 1, 'B', 1),
+    (18, 1, 'B', 2),
+    (19, 1, 'B', 3),
+    (20, 1, 'B', 4),
+    (21, 1, 'C', 1),
+    (22, 1, 'C', 2),
+    (23, 1, 'C', 3),
+    (24, 1, 'C', 4),
+    (25, 1, 'D', 1),
+    (26, 1, 'D', 2),
+    (27, 1, 'D', 3),
+    (28, 1, 'D', 4);
 
 INSERT INTO `screening` VALUES
-	(1,'Niebezpieczny kochanek',1,'2023-10-31','17:50'),
-	(2,'O psie, który jeździł koleją',2,'2023-10-31','17:50'),
-	(3,'O psie, który jeździł koleją',2,'2023-10-31','17:50'),
-	(4,'O psie, który jeździł koleją',2,'2023-10-31','17:50'),
-	(5,'Oppenheimer',1,'2023-10-31','17:50'),
-	(6,'Różyczka 2',1,'2023-10-31','17:50'),
-	(7,'Superposition',3,'2023-10-31','17:50'),
-	(8,'Superposition',3,'2023-10-31','17:50');
+	(1,'Niebezpieczny kochanek',1,'2023-10-30','11:00'),
+	(2,'O psie, który jeździł koleją',2,'2023-10-30','13:30'),
+	(3,'O psie, który jeździł koleją',2,'2023-10-31','14:00'),
+	(4,'O psie, który jeździł koleją',2,'2023-10-31','18:50'),
+	(5,'Oppenheimer',1,'2023-10-30','15:20'),
+	(6,'Różyczka 2',1,'2023-10-31','19:50'),
+	(7,'Superposition',1,'2023-10-30','21:30'),
+	(8,'Superposition',1,'2023-10-31','14:35');
 
 INSERT INTO `reservation` VALUES
-    (1, 'Andrzej', 'Kowalski', 50.0, '2023-10-31 17:50:45');
+    (1, 'Andrzej', 'Kowalski', 50.0, '2023-10-31 16:25:25'),
+    (2, 'Mikołaj', 'Szkaradek', 75.0, '2023-10-30 10:17:59'),
+    (3, 'Agata', 'Załęska', 50.0, '2023-11-01 14:30:12'),
+    (4, 'Jacek', 'Nowak', 25.50, '2023-11-02 17:50:45'),
+    (5, 'Mateusz', 'Łakomiec', 100.0, '2023-11-02 19:40:45');
 
--- INSERT INTO `reservation_detail` VALUES
--- INSERT INTO `screening` VALUES
--- INSERT INTO `room` VALUES
+INSERT INTO `reservation_detail` VALUES
+    (1, 1, 1),
+    (2, 1, 2),
+    (3, 2, 11),
+    (4, 2, 12),
+    (5, 3, 21),
+    (6, 4, 8),
+    (7, 4, 9),
+    (8, 4, 10),
+    (9, 5, 18),
+    (10, 5, 19);
+
 -- INSERT INTO `seat_availability` VALUES
+
