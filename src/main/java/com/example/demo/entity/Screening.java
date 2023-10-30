@@ -9,15 +9,15 @@ import java.sql.Time;
 public class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id", nullable = false)
     private int id;
-    @Column(name="movie_title")
+    @Column(name="movie_title", nullable = false)
     private String movieTitle;
-    @Column(name="room_number")
+    @Column(name="room_number", nullable = false)
     private int roomNumber;
-    @Column(name="screening_date")
+    @Column(name="screening_date", nullable = false)
     private Date screeningDate;
-    @Column(name="screening_time")
+    @Column(name="screening_time", nullable = false)
     private Time screeningTime;
 
     public Screening() {}
