@@ -15,18 +15,18 @@ public class Screening {
     private String movieTitle;
     @Column(name="room_number", nullable = false)
     private int roomNumber;
-    @Column(name="screening_date", nullable = false)
-    private Date screeningDate;
-    @Column(name="screening_time", nullable = false)
-    private Time screeningTime;
+    @Column(name="date", nullable = false)
+    private Date date;
+    @Column(name="start_time", nullable = false)
+    private Time startTime;
 
     public Screening() {}
 
-    public Screening(String movieTitle, int roomNumber, Date screeningDate, Time screeningTime) {
+    public Screening(String movieTitle, int roomNumber, Date date, Time startTime) {
         this.movieTitle = movieTitle;
         this.roomNumber = roomNumber;
-        this.screeningDate = screeningDate;
-        this.screeningTime = screeningTime;
+        this.date = date;
+        this.startTime = startTime;
     }
 
     public int getId() {
@@ -53,20 +53,20 @@ public class Screening {
         this.roomNumber = roomNumber;
     }
 
-    public Date getScreeningDate() {
-        return screeningDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setScreeningDate(Date screeningDate) {
-        this.screeningDate = screeningDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Time getScreeningTime() {
-        return screeningTime;
+    public Time getStartTime() {
+        return startTime;
     }
 
-    public void setScreeningTime(Time screeningTime) {
-        this.screeningTime = screeningTime;
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
     }
 
     @Override
@@ -75,8 +75,8 @@ public class Screening {
                 "id=" + id +
                 ", movieTitle='" + movieTitle + '\'' +
                 ", roomNumber=" + roomNumber +
-                ", screeningDate=" + screeningDate +
-                ", screeningTime=" + screeningTime +
+                ", date=" + date +
+                ", startTime=" + startTime +
                 '}';
     }
 }

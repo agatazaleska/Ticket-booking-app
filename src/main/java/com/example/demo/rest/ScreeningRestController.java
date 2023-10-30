@@ -2,10 +2,11 @@ package com.example.demo.rest;
 
 import com.example.demo.entity.Screening;
 import com.example.demo.service.ScreeningService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.util.MovieTimePreferences;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -18,7 +19,12 @@ public class ScreeningRestController {
     }
 
     @GetMapping("/screenings")
-    public List<Screening> getAll() {
-        return screeningService.findAll();
+    public List<Screening> getScreenings(
+            @RequestParam LocalDate date,
+            @RequestParam LocalTime earliestTime,
+            @RequestParam LocalTime latestTime) {
+        MovieTimePreferences preferences = new MovieTimePreferences(
+                date, earliestTime, latestTime);
+        return screeningService.findByPreferences(preferences);
     }
 }
