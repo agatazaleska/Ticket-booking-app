@@ -31,8 +31,8 @@ CREATE TABLE `screening` (
   `id` int NOT NULL AUTO_INCREMENT,
   `movie_title` varchar(45) NOT NULL,
   `room_number` int NOT NULL,
-  `screening_date` date NOT NULL,
-  `screening_time` time NOT NULL,
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`room_number`) REFERENCES `room`(`number`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
