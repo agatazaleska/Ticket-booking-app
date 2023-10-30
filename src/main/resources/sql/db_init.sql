@@ -47,17 +47,20 @@ CREATE TABLE `reservation` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `reservation_detail` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `reservation_id` int NOT NULL,
   `seat_id` int NOT NULL,
-  PRIMARY KEY (`reservation_id`, `seat_id`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`reservation_id`) REFERENCES `reservation`(`id`) ON DELETE CASCADE,
   FOREIGN KEY (`seat_id`) REFERENCES `seat`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `seat_availability` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `screening_id` int NOT NULL,
   `seat_id` int NOT NULL,
   `available` bool NOT NULL,
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`screening_id`) REFERENCES `screening`(`id`) ON DELETE CASCADE,
   FOREIGN KEY (`seat_id`) REFERENCES `seat`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
