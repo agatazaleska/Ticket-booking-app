@@ -5,13 +5,23 @@ import java.util.List;
 public class ReservationRequest {
     private int screeningId;
     private List<TicketRequest> requestedTickets;
-    private String customerName;
-    private String customerSurname;
+    private CustomerData customerData;
 
-    public ReservationRequest(int screeningId, List<TicketRequest> requestedTickets, String customerName, String customerSurname) {
+    public ReservationRequest(int screeningId, List<TicketRequest> requestedTickets, CustomerData customerData) {
         this.screeningId = screeningId;
         this.requestedTickets = requestedTickets;
-        this.customerName = customerName;
-        this.customerSurname = customerSurname;
+        this.customerData = customerData;
+    }
+
+    public int getScreeningId() {
+        return screeningId;
+    }
+
+    public List<TicketRequest> getRequestedTickets() {
+        return requestedTickets;
+    }
+
+    public CustomerData getCustomerData() {
+        return customerData;
     }
 }
