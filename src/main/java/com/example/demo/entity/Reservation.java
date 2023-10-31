@@ -10,6 +10,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable = false)
     private int id;
+    @Column(name="screening_id", nullable = false)
+    private int screeningId;
     @Column(name="customer_name", nullable = false)
     private String customerName;
     @Column(name="customer_surname", nullable = false)
@@ -19,7 +21,7 @@ public class Reservation {
     @Column(name="expiration_date", nullable = false)
     private LocalDateTime expirationDate;
 
-    Reservation() {}
+    public Reservation() {}
 
     public Reservation(String customerName, String customerSurname, float totalCost, LocalDateTime expirationDate) {
         this.customerName = customerName;

@@ -39,11 +39,13 @@ CREATE TABLE `screening` (
 
 CREATE TABLE `reservation` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `screening_id` int NOT NULL,
   `customer_name` varchar(45) NOT NULL,
   `customer_surname` varchar(45) NOT NULL,
   `total_cost` float NOT NULL,
   `expiration_date` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`screening_id`) REFERENCES `screening`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `reservation_detail` (
