@@ -23,7 +23,8 @@ public class Reservation {
 
     public Reservation() {}
 
-    public Reservation(String customerName, String customerSurname, float totalCost, LocalDateTime expirationDate) {
+    public Reservation(int screeningId, String customerName, String customerSurname, float totalCost, LocalDateTime expirationDate) {
+        this.screeningId = screeningId;
         this.customerName = customerName;
         this.customerSurname = customerSurname;
         this.totalCost = totalCost;
@@ -70,10 +71,19 @@ public class Reservation {
         this.expirationDate = expirationDate;
     }
 
+    public int getScreeningId() {
+        return screeningId;
+    }
+
+    public void setScreeningId(int screeningId) {
+        this.screeningId = screeningId;
+    }
+
     @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
+                ", screeningId=" + screeningId +
                 ", customerName='" + customerName + '\'' +
                 ", customerSurname='" + customerSurname + '\'' +
                 ", totalCost=" + totalCost +

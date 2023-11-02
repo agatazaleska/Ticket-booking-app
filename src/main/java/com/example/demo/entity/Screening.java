@@ -1,9 +1,10 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Screening {
@@ -16,13 +17,13 @@ public class Screening {
     @Column(name="room_number", nullable = false)
     private int roomNumber;
     @Column(name="date", nullable = false)
-    private Date date;
+    private LocalDate date;
     @Column(name="start_time", nullable = false)
-    private Time startTime;
+    private LocalTime startTime;
 
     public Screening() {}
 
-    public Screening(String movieTitle, int roomNumber, Date date, Time startTime) {
+    public Screening(String movieTitle, int roomNumber, LocalDate date, LocalTime startTime) {
         this.movieTitle = movieTitle;
         this.roomNumber = roomNumber;
         this.date = date;
@@ -53,19 +54,19 @@ public class Screening {
         this.roomNumber = roomNumber;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
