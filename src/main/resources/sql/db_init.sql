@@ -103,22 +103,22 @@ INSERT INTO `seat` VALUES
     (12, 1, 'C', 4);
 
 INSERT INTO `seat` VALUES
-    (13, 1, 'A', 1),
-    (14, 1, 'A', 2),
-    (15, 1, 'A', 3),
-    (16, 1, 'A', 4),
-    (17, 1, 'B', 1),
-    (18, 1, 'B', 2),
-    (19, 1, 'B', 3),
-    (20, 1, 'B', 4),
-    (21, 1, 'C', 1),
-    (22, 1, 'C', 2),
-    (23, 1, 'C', 3),
-    (24, 1, 'C', 4),
-    (25, 1, 'D', 1),
-    (26, 1, 'D', 2),
-    (27, 1, 'D', 3),
-    (28, 1, 'D', 4);
+    (13, 2, 'A', 1),
+    (14, 2, 'A', 2),
+    (15, 2, 'A', 3),
+    (16, 2, 'A', 4),
+    (17, 2, 'B', 1),
+    (18, 2, 'B', 2),
+    (19, 2, 'B', 3),
+    (20, 2, 'B', 4),
+    (21, 2, 'C', 1),
+    (22, 2, 'C', 2),
+    (23, 2, 'C', 3),
+    (24, 2, 'C', 4),
+    (25, 2, 'D', 1),
+    (26, 2, 'D', 2),
+    (27, 2, 'D', 3),
+    (28, 2, 'D', 4);
 
 INSERT INTO `screening` VALUES
 	(1,'Niebezpieczny kochanek',1,'2023-10-30','11:00'),
@@ -149,5 +149,7 @@ INSERT INTO `reservation_detail` VALUES
     (9, 5, 18),
     (10, 5, 19);
 
--- INSERT INTO `seat_availability` VALUES
-
+INSERT INTO `seat_availability` (`screening_id`, `seat_id`, `available`)
+SELECT s.id, seat.id, true
+FROM `screening` s
+JOIN `seat` ON seat.room_number = s.room_number;
