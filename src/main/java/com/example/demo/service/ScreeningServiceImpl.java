@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ScreeningServiceImpl implements ScreeningService {
@@ -28,5 +29,16 @@ public class ScreeningServiceImpl implements ScreeningService {
                 preferences.getDate(),
                 preferences.getEarliestStart(),
                 preferences.getLatestStart());
+    }
+
+    @Override
+    public Screening findById(int screeningId) {
+        Optional<Screening> result = screeningRepository.findById(screeningId);
+        if (result.isEmpty()) {
+            throw new RuntimeException();
+        }
+        else {
+            return result.get();
+        }
     }
 }

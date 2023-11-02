@@ -10,10 +10,9 @@ import java.time.LocalTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/screening_api")
 public class ScreeningRestController {
     private ScreeningService screeningService;
-    // quick and dirty: inject employee dao
     public ScreeningRestController(ScreeningService theScreeningService) {
         screeningService = theScreeningService;
     }

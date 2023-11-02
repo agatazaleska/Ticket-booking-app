@@ -8,4 +8,5 @@ import java.util.List;
 public interface ScreeningService {
     List<Screening> findAll();
     List<Screening> findByPreferences(MovieTimePreferences preferences);
+    Screening findById(int screeningId);
 }
