@@ -69,10 +69,9 @@ CREATE TABLE `seat_availability` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `ticket_price` (
-  `id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(45) NOT NULL,
   `price` float NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -80,9 +79,9 @@ CREATE TABLE `ticket_price` (
 --
 
 INSERT INTO `ticket_price` VALUES
-    (1, 'adult', 25.0),
-    (2, 'student', 18.0),
-    (3, 'child', 12.5);
+    ('adult', 25.0),
+    ('student', 18.0),
+    ('child', 12.5);
 
 INSERT INTO `room` VALUES
     (1, 3, 4),
