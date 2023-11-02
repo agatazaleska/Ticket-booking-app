@@ -25,7 +25,8 @@ CREATE TABLE `seat` (
   `row` varchar(45) NOT NULL,
   `seat_number` int NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`room_number`) REFERENCES `room`(`number`) ON DELETE CASCADE
+  FOREIGN KEY (`room_number`) REFERENCES `room`(`number`) ON DELETE CASCADE,
+  UNIQUE KEY `unique_seat` (`room_number`, `row`, `seat_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `screening` (
@@ -120,14 +121,14 @@ INSERT INTO `seat` VALUES
     (28, 2, 'D', 4);
 
 INSERT INTO `screening` VALUES
-	(1,'Niebezpieczny kochanek',1,'2023-10-30','11:00'),
-	(2,'O psie, który jeździł koleją',2,'2023-10-30','13:30'),
-	(3,'O psie, który jeździł koleją',2,'2023-10-31','14:00'),
-	(4,'O psie, który jeździł koleją',2,'2023-10-31','18:50'),
-	(5,'Oppenheimer',1,'2023-10-30','15:20'),
-	(6,'Różyczka 2',1,'2023-10-31','19:50'),
-	(7,'Superposition',1,'2023-10-30','21:30'),
-	(8,'Superposition',1,'2023-10-31','14:35');
+	(1,'Niebezpieczny kochanek',1,'2023-11-30','11:00'),
+	(2,'O psie, który jeździł koleją',2,'2023-11-30','13:30'),
+	(3,'O psie, który jeździł koleją',2,'2023-11-29','14:00'),
+	(4,'O psie, który jeździł koleją',2,'2023-11-29','18:50'),
+	(5,'Oppenheimer',1,'2023-11-30','15:20'),
+	(6,'Różyczka 2',1,'2023-11-29','19:50'),
+	(7,'Superposition',1,'2023-11-30','21:30'),
+	(8,'Superposition',1,'2023-11-29','14:35');
 
 INSERT INTO `reservation` VALUES
     (1, 1, 'Andrzej', 'Kowalski', 50.0, '2023-10-31 16:25:25'),
