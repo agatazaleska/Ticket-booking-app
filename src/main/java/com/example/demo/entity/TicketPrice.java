@@ -10,6 +10,8 @@ public class TicketPrice {
     @Column(name="price", nullable = false)
     private float price;
 
+    public TicketPrice() {}
+
     public TicketPrice(String type, float price) {
         this.type = type;
         this.price = price;

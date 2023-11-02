@@ -15,6 +15,8 @@ public class Room {
     @Column(name="total_seats_in_one_row")
     private int totalSeatsInOneRow;
 
+    public Room() {}
+
     public Room(int number, int totalRows, int totalSeatsInOneRow) {
         this.number = number;
         this.totalRows = totalRows;
@@ -43,5 +45,14 @@ public class Room {
 
     public void setTotalSeatsInOneRow(int totalSeatsInOneRow) {
         this.totalSeatsInOneRow = totalSeatsInOneRow;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "number=" + number +
+                ", totalRows=" + totalRows +
+                ", totalSeatsInOneRow=" + totalSeatsInOneRow +
+                '}';
     }
 }
