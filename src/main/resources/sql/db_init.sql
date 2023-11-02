@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS `reservation`;
 DROP TABLE IF EXISTS `screening`;
 DROP TABLE IF EXISTS `seat`;
 DROP TABLE IF EXISTS `room`;
+DROP TABLE IF EXISTS `ticket_price`;
 
 CREATE TABLE `room` (
   `number` int NOT NULL,
@@ -67,9 +68,21 @@ CREATE TABLE `seat_availability` (
   FOREIGN KEY (`seat_id`) REFERENCES `seat`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `ticket_price` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) NOT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Sample data for the cinema
 --
+
+INSERT INTO `ticket_price` VALUES
+    (1, 'adult', 25.0),
+    (2, 'student', 18.0),
+    (3, 'child', 12.5);
 
 INSERT INTO `room` VALUES
     (1, 3, 4),
@@ -118,11 +131,11 @@ INSERT INTO `screening` VALUES
 	(8,'Superposition',1,'2023-10-31','14:35');
 
 INSERT INTO `reservation` VALUES
-    (1, 'Andrzej', 'Kowalski', 50.0, '2023-10-31 16:25:25'),
-    (2, 'Mikołaj', 'Szkaradek', 75.0, '2023-10-30 10:17:59'),
-    (3, 'Agata', 'Załęska', 50.0, '2023-11-01 14:30:12'),
-    (4, 'Jacek', 'Nowak', 25.50, '2023-11-02 17:50:45'),
-    (5, 'Mateusz', 'Łakomiec', 100.0, '2023-11-02 19:40:45');
+    (1, 1, 'Andrzej', 'Kowalski', 50.0, '2023-10-31 16:25:25'),
+    (2, 2, 'Mikołaj', 'Szkaradek', 75.0, '2023-10-30 10:17:59'),
+    (3, 2, 'Agata', 'Załęska', 50.0, '2023-11-01 14:30:12'),
+    (4, 3, 'Jacek', 'Nowak', 25.50, '2023-11-02 17:50:45'),
+    (5, 8, 'Mateusz', 'Łakomiec', 100.0, '2023-11-02 19:40:45');
 
 INSERT INTO `reservation_detail` VALUES
     (1, 1, 1),
