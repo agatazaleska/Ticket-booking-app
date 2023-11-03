@@ -1,7 +1,7 @@
 package com.example.demo.rest;
 
 import com.example.demo.entity.Screening;
-import com.example.demo.service.ScreeningService;
+import com.example.demo.service.screening.ScreeningService;
 import com.example.demo.util.MovieTimePreferences;
 import org.springframework.web.bind.annotation.*;
 

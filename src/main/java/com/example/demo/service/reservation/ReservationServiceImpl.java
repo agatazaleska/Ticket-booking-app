@@ -1,26 +1,28 @@
-package com.example.demo.service;
+package com.example.demo.service.reservation;
 
 import com.example.demo.dao.ReservationRepository;
-import com.example.demo.dao.TicketPriceRepository;
 import com.example.demo.entity.Reservation;
 import com.example.demo.entity.Screening;
 import com.example.demo.entity.Seat;
-import com.example.demo.entity.SeatAvailability;
 import com.example.demo.exception.InvalidReservationException;
-import com.example.demo.util.ReservationRequest;
+import com.example.demo.service.room.RoomService;
+import com.example.demo.service.screening.ScreeningService;
+import com.example.demo.service.seat.SeatService;
+import com.example.demo.service.seat_availability.SeatAvailabilityService;
+import com.example.demo.service.ticket_price.TicketPriceService;
+import com.example.demo.util.reservation_request.ReservationRequest;
 import com.example.demo.util.RoomLayout;
-import com.example.demo.util.TicketType;
+import com.example.demo.util.reservation_request.TicketType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
 @Service
-public class ReservationServiceImpl implements ReservationService{
+public class ReservationServiceImpl implements ReservationService {
     private static int expirationMinutesBeforeScreening = 10;
     private ReservationRepository reservationRepository;
     private ScreeningService screeningService;

@@ -1,8 +1,8 @@
 package com.example.demo.rest;
 
 import com.example.demo.entity.Reservation;
-import com.example.demo.service.ReservationService;
-import com.example.demo.util.ReservationRequest;
+import com.example.demo.service.reservation.ReservationService;
+import com.example.demo.util.reservation_request.ReservationRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

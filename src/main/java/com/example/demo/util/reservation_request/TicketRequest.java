@@ -1,4 +1,4 @@
-package com.example.demo.util;
+package com.example.demo.util.reservation_request;
 
 public class TicketRequest {
     private char seatRow;

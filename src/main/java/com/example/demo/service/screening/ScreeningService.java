@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.screening;
 
 import com.example.demo.entity.Screening;
 import com.example.demo.util.MovieTimePreferences;

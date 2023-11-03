@@ -1,7 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.screening;
 
 import com.example.demo.dao.ScreeningRepository;
 import com.example.demo.entity.Screening;
+import com.example.demo.service.screening.ScreeningService;
 import com.example.demo.util.MovieTimePreferences;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,7 @@ public class ScreeningServiceImpl implements ScreeningService {
     public Screening findById(int screeningId) {
         Optional<Screening> result = screeningRepository.findById(screeningId);
         if (result.isEmpty()) {
+            // custom exception?
             throw new RuntimeException();
         }
         else {

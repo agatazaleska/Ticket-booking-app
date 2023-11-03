@@ -1,7 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.seat_availability;
 
 import com.example.demo.dao.SeatAvailabilityRepository;
 import com.example.demo.entity.SeatAvailability;
+import com.example.demo.service.seat_availability.SeatAvailabilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.service.ticket_price;
 
 import com.example.demo.dao.TicketPriceRepository;
 import com.example.demo.entity.TicketPrice;
-import com.example.demo.util.TicketType;
+import com.example.demo.service.ticket_price.TicketPriceService;
+import com.example.demo.util.reservation_request.TicketType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,8 @@
-package com.example.demo.util;
+package com.example.demo.util.reservation_request;
 
 import com.example.demo.entity.Seat;
+import com.example.demo.util.RoomLayout;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;

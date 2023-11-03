@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.seat_availability;
 
 import com.example.demo.entity.SeatAvailability;
 
