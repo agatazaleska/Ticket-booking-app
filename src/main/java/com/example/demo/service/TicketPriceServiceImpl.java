@@ -4,11 +4,13 @@ import com.example.demo.dao.TicketPriceRepository;
 import com.example.demo.entity.TicketPrice;
 import com.example.demo.util.TicketType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class TicketPriceServiceImpl implements TicketPriceService {
     private TicketPriceRepository ticketPriceRepository;
     private static final Map<String, TicketType> ticketTypeStringToEnum = new HashMap<>();
