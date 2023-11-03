@@ -1,16 +1,22 @@
 package com.example.demo.util;
 
 public class TicketRequest {
-    private int seatId;
-    private TicketType ticketType; // enum?
+    private char seatRow;
+    private int seatNumber;
+    private TicketType ticketType;
 
-    public TicketRequest(int seatId, TicketType ticketType) {
-        this.seatId = seatId;
+    public TicketRequest(char seatRow, int seatNumber, TicketType ticketType) {
+        this.seatRow = seatRow;
+        this.seatNumber = seatNumber;
         this.ticketType = ticketType;
     }
 
-    public int getSeatId() {
-        return seatId;
+    public char getSeatRow() {
+        return seatRow;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
     }
 
     public TicketType getTicketType() {
