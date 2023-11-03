@@ -11,13 +11,13 @@ public class Seat {
     @Column(name="room_number", nullable = false)
     private int roomNumber;
     @Column(name="row", nullable = false)
-    private String row;
+    private char row;
     @Column(name="seat_number", nullable = false)
     private int seatNumber;
 
     public Seat() {}
 
-    public Seat(int roomNumber, String row, int seatNumber) {
+    public Seat(int roomNumber, char row, int seatNumber) {
         this.roomNumber = roomNumber;
         this.row = row;
         this.seatNumber = seatNumber;
@@ -39,11 +39,11 @@ public class Seat {
         this.roomNumber = roomNumber;
     }
 
-    public String getRow() {
+    public char getRow() {
         return row;
     }
 
-    public void setRow(String row) {
+    public void setRow(char row) {
         this.row = row;
     }
 
