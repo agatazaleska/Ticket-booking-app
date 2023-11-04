@@ -70,6 +70,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     private Reservation processReservationRequest(ReservationRequest reservationRequest) {
+        checkIfAtLeastOneSeat(reservationRequest);
         checkIfIsEarlyEnough(reservationRequest);
         checkCustomerDataCorrectness(reservationRequest);
         checkForIsolatedSeat(reservationRequest);
@@ -114,6 +115,14 @@ public class ReservationServiceImpl implements ReservationService {
         return result;
     }
 
+    private void checkIfAtLeastOneSeat(ReservationRequest reservationRequest) {
+        if (reservationRequest.getRequestedTickets().isEmpty()) {
+            throw new InvalidReservationException(
+                    "Error. The reservation has to be contain at least " +
+                            "one seat.");
+        }
+    }
+
     private void checkIfIsEarlyEnough(ReservationRequest reservationRequest) {
         int requiredScreeningId = reservationRequest.getScreeningId();
         Screening requiredScreening = screeningService.findById(requiredScreeningId);
@@ -125,12 +134,14 @@ public class ReservationServiceImpl implements ReservationService {
                             "15 minutes before the screening start.");
         }
     }
+
     private void checkCustomerDataCorrectness(ReservationRequest reservationRequest) {
         if (!reservationRequest.getCustomerData().isValid()) {
             throw new InvalidReservationException(
                     "Error. Invalid customer data for this reservation.");
         }
     }
+
     private void checkForIsolatedSeat(ReservationRequest reservationRequest) {
         int requiredScreeningId = reservationRequest.getScreeningId();
         Screening requiredScreening = screeningService.findById(requiredScreeningId);
