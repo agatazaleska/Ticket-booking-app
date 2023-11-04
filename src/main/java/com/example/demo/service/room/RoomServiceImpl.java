@@ -18,14 +18,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room findById(int roomId) {
-        Optional<Room> result = roomRepository.findById(roomId);
-        if (result.isEmpty()) {
-            // custom exception?
-            throw new RuntimeException();
-        }
-        else {
-            return result.get();
-        }
+    public Optional<Room> findById(int roomId) {
+        return roomRepository.findById(roomId);
     }
 }

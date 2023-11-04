@@ -2,6 +2,7 @@ package com.example.demo.service.ticket_price;
 
 import com.example.demo.dao.TicketPriceRepository;
 import com.example.demo.entity.TicketPrice;
+import com.example.demo.exception.DataBaseException;
 import com.example.demo.service.ticket_price.TicketPriceService;
 import com.example.demo.util.reservation_request.TicketType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,13 @@ public class TicketPriceServiceImpl implements TicketPriceService {
         for (TicketPrice ticketPrice : ticketPrices) {
             String ticketTypeStr = ticketPrice.getType();
             Float price = ticketPrice.getPrice();
-            // handle incorrect data in database?
-            result.put(ticketTypeStringToEnum.get(ticketTypeStr), price);
+            TicketType enumType = ticketTypeStringToEnum.get(ticketTypeStr);
+            if (enumType == null) {
+                throw new DataBaseException(
+                        "Database Error. Encountered problems while getting " +
+                        "ticket prices.");
+            }
+            result.put(enumType, price);
         }
         return result;
     }

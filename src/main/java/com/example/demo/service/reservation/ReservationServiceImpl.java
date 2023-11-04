@@ -2,6 +2,7 @@ package com.example.demo.service.reservation;
 
 import com.example.demo.dao.ReservationRepository;
 import com.example.demo.entity.*;
+import com.example.demo.exception.DataBaseException;
 import com.example.demo.exception.InvalidReservationException;
 import com.example.demo.service.reservation_detail.ReservationDetailService;
 import com.example.demo.service.room.RoomService;
@@ -55,7 +56,8 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public Reservation postReservation(ReservationRequest reservationRequest) {
         List<Seat> wantedSeats = getRequestedSeats(reservationRequest);
-        Reservation reservation = processReservationRequest(reservationRequest);
+        Reservation reservation = reservationRepository.
+                save(processReservationRequest(reservationRequest));
 
         for (Seat seat : wantedSeats) {
             ReservationDetail detail = new ReservationDetail(
@@ -66,7 +68,7 @@ public class ReservationServiceImpl implements ReservationService {
             seatAvailabilityService.save(availability);
             reservationDetailService.save(detail);
         }
-        return reservationRepository.save(reservation);
+        return reservation;
     }
 
     private Reservation processReservationRequest(ReservationRequest reservationRequest) {
@@ -75,15 +77,15 @@ public class ReservationServiceImpl implements ReservationService {
         checkCustomerDataCorrectness(reservationRequest);
         checkForIsolatedSeat(reservationRequest);
 
-        int requiredScreeningId = reservationRequest.getScreeningId();
-        Screening requiredScreening = screeningService.findById(requiredScreeningId);
+        int requestedScreeningId = reservationRequest.getScreeningId();
+        Screening requestedScreening = getRequestedScreening(reservationRequest);
         Map<TicketType, Float> ticketPrices = ticketPriceService.getTicketPrices();
         return new Reservation(
-            requiredScreeningId,
+            requestedScreeningId,
             reservationRequest.getCustomerData().getName(),
             reservationRequest.getCustomerData().getSurname(),
             reservationRequest.getCost(ticketPrices),
-                requiredScreening.getDate().atTime(requiredScreening.getStartTime()).
+                requestedScreening.getDate().atTime(requestedScreening.getStartTime()).
                     minusMinutes(expirationMinutesBeforeScreening)
         );
     }
@@ -92,7 +94,7 @@ public class ReservationServiceImpl implements ReservationService {
         List<Seat> result = new ArrayList<>();
 
         int screeningId = reservationRequest.getScreeningId();
-        Screening screening = screeningService.findById(screeningId);
+        Screening screening = getRequestedScreening(reservationRequest);
         int roomNumber = screening.getRoomNumber();
 
         for (TicketRequest ticketRequest : reservationRequest.getRequestedTickets()) {
@@ -118,20 +120,19 @@ public class ReservationServiceImpl implements ReservationService {
     private void checkIfAtLeastOneSeat(ReservationRequest reservationRequest) {
         if (reservationRequest.getRequestedTickets().isEmpty()) {
             throw new InvalidReservationException(
-                    "Error. The reservation has to be contain at least " +
-                            "one seat.");
+                    "Error. The reservation has to contain at least " +
+                    "one seat.");
         }
     }
 
     private void checkIfIsEarlyEnough(ReservationRequest reservationRequest) {
-        int requiredScreeningId = reservationRequest.getScreeningId();
-        Screening requiredScreening = screeningService.findById(requiredScreeningId);
-        LocalDate screeningDate = requiredScreening.getDate();
-        LocalTime screeningTime = requiredScreening.getStartTime();
+        Screening requestedScreening = getRequestedScreening(reservationRequest);
+        LocalDate screeningDate = requestedScreening.getDate();
+        LocalTime screeningTime = requestedScreening.getStartTime();
         if (!reservationRequest.isEarlyEnough(screeningDate.atTime(screeningTime))) {
             throw new InvalidReservationException(
                     "Error. The reservation has to be made at least " +
-                            "15 minutes before the screening start.");
+                    "15 minutes before the screening start.");
         }
     }
 
@@ -141,21 +142,40 @@ public class ReservationServiceImpl implements ReservationService {
                     "Error. Invalid customer data for this reservation.");
         }
     }
+    
+    private Screening getRequestedScreening(ReservationRequest reservationRequest) {
+        int requestedScreeningId = reservationRequest.getScreeningId();
+        Optional<Screening> maybeScreening = screeningService.findById(requestedScreeningId);
+        if (maybeScreening.isEmpty()) {
+            throw new InvalidReservationException(
+                    "Error. requested screening not found.");
+        }
+        return maybeScreening.get();
+    }
 
     private void checkForIsolatedSeat(ReservationRequest reservationRequest) {
-        int requiredScreeningId = reservationRequest.getScreeningId();
-        Screening requiredScreening = screeningService.findById(requiredScreeningId);
-        int roomNumber = requiredScreening.getRoomNumber();
+        int requestedScreeningId = reservationRequest.getScreeningId();
+        Optional<Screening> maybeScreening = screeningService.findById(requestedScreeningId);
+        if (maybeScreening.isEmpty()) {
+            throw new InvalidReservationException(
+                    "Error. requested screening not found.");
+        }
+        int roomNumber = maybeScreening.get().getRoomNumber();
 
         List<Seat> orderedSeats = seatService.findAllSeatsInRoomSorted(roomNumber);
+        Optional<Room> maybeRoom = roomService.findById(roomNumber);
+        if (maybeRoom.isEmpty()) {
+            throw new DataBaseException(
+                    "Database Error. Room for this screening not found.");
+        }
         RoomLayout roomLayout = new RoomLayout(orderedSeats,
-                roomService.findById(roomNumber).getTotalRows());
+                maybeRoom.get().getTotalRows());
         Map<Integer, Boolean> seatIdToAvailability =
-                seatAvailabilityService.seatToAvailabilityByScreeningId(requiredScreeningId);
+                seatAvailabilityService.seatToAvailabilityByScreeningId(requestedScreeningId);
         if (reservationRequest.leavesIsolatedSeat(roomLayout, seatIdToAvailability)) {
             throw new InvalidReservationException(
                     "Error. There cannot be one isolated seat left after " +
-                            "your reservation is completed.");
+                    "your reservation is completed.");
         }
     }
 }

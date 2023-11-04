@@ -2,6 +2,8 @@ package com.example.demo.service.room;
 
 import com.example.demo.entity.Room;
 
+import java.util.Optional;
+
 public interface RoomService {
-    Room findById(int roomId);
+    Optional<Room> findById(int roomId);
 }

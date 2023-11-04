@@ -33,14 +33,7 @@ public class ScreeningServiceImpl implements ScreeningService {
     }
 
     @Override
-    public Screening findById(int screeningId) {
-        Optional<Screening> result = screeningRepository.findById(screeningId);
-        if (result.isEmpty()) {
-            // custom exception?
-            throw new RuntimeException();
-        }
-        else {
-            return result.get();
-        }
+    public Optional<Screening> findById(int screeningId) {
+        return screeningRepository.findById(screeningId);
     }
 }
