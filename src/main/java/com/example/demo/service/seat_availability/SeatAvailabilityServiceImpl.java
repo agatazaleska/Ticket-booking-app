@@ -29,4 +29,9 @@ public class SeatAvailabilityServiceImpl implements SeatAvailabilityService {
         }
         return result;
     }
+
+    @Override
+    public SeatAvailability save(SeatAvailability seatAvailability) {
+        return seatAvailabilityRepository.save(seatAvailability);
+    }
 }

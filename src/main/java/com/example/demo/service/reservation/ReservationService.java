@@ -4,5 +4,5 @@ import com.example.demo.entity.Reservation;
 import com.example.demo.util.reservation_request.ReservationRequest;
 
 public interface ReservationService {
-    Reservation processReservationRequest(ReservationRequest reservationRequest);
+    Reservation postReservation(ReservationRequest reservationRequest);
 }

@@ -16,7 +16,7 @@ public class ReservationRestController {
     @PostMapping("/reservations")
     public Reservation RequestReservation(
             @RequestBody ReservationRequest reservationRequest) {
-        return reservationService.processReservationRequest(reservationRequest);
+        return reservationService.postReservation(reservationRequest);
     }
 }
 
