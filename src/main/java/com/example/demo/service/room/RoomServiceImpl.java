@@ -26,8 +26,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Optional<Room> findById(int roomId) {
-        return roomRepository.findById(roomId);
+    public Optional<Room> findByNumber(int roomNumber) {
+        return roomRepository.findById(roomNumber);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class RoomServiceImpl implements RoomService {
         if (maybeScreening.isEmpty()) {
             throw new ScreeningException("Error. Screening not found.");
         }
-        Optional<Room> maybeRoom = findById(maybeScreening.get().getRoomNumber());
+        Optional<Room> maybeRoom = findByNumber(maybeScreening.get().getRoomNumber());
         if (maybeRoom.isEmpty()) {
             throw new DataBaseException("Database error. Room for this " +
                                         "screening not found.");

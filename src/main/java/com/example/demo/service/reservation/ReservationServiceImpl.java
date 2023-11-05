@@ -163,7 +163,7 @@ public class ReservationServiceImpl implements ReservationService {
         int roomNumber = maybeScreening.get().getRoomNumber();
 
         List<Seat> orderedSeats = seatService.findAllSeatsInRoomSorted(roomNumber);
-        Optional<Room> maybeRoom = roomService.findById(roomNumber);
+        Optional<Room> maybeRoom = roomService.findByNumber(roomNumber);
         if (maybeRoom.isEmpty()) {
             throw new DataBaseException(
                     "Database Error. Room for this screening not found.");
