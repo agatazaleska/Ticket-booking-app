@@ -6,5 +6,4 @@ import java.util.Optional;
 
 public interface RoomService {
     Optional<Room> findByNumber(int roomNumber);
-    Room findByScreeningId(int screeningId);
 }
