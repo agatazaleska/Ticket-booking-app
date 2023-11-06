@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SQL_DIR="../Ticket-booking-spring-app/src/main/resources/sql"
 
 cd "${SQL_DIR}"
@@ -18,11 +20,14 @@ echo "Screening endpoint"
 echo "------------------------------------------------------------------"
 
 echo "Getting screenings from november 30th from 10:00 to 20:00"
+sleep(3)
 echo "Sending get request to endpoint ${SCREENING_URL}${SCREENING_PARAMS}"
+sleep(3)
 curl "${SCREENING_URL}${SCREENING_PARAMS}"
 echo -e "\n"
 
 echo "Getting screening with id=5 from endpoint ${SCREENING_URL}/5"
+sleep(3)
 curl "${SCREENING_URL}/5"
 echo -e "\n\n"
 
@@ -53,6 +58,7 @@ echo '{
     "surname": "Doe"
   }
 }'
+sleep(5)
 curl -X POST "${RESERVAION_URL}" -H "Content-Type: application/json" \
 -d '{
   "screeningId": 5,
@@ -86,6 +92,7 @@ echo '{
     "surname": "Doe"
   }
 }'
+sleep(5)
 curl -X POST "${RESERVAION_URL}" -H "Content-Type: application/json" \
 -d '{
   "screeningId": 4,
@@ -114,6 +121,7 @@ echo '{
     "surname": "Doe"
   }
 }'
+sleep(5)
 curl -X POST "${RESERVAION_URL}" -H "Content-Type: application/json" \
 -d '{
   "screeningId": 5,
@@ -148,6 +156,7 @@ echo '{
     "surname": "Doe"
   }
 }'
+sleep(5)
 curl -X POST "${RESERVAION_URL}" -H "Content-Type: application/json" \
 -d '{
   "screeningId": 4,
@@ -172,17 +181,20 @@ echo "------------------------------------------------------------------"
 
 echo "Getting information about room with id = 1"
 echo "Sending get request to endpoint ${ROOM_URL}/1"
+sleep(3)
 curl "${ROOM_URL}/1"
 echo -e "\n"
 
 echo "Getting information about room with id = 2"
 echo "Sending get request to endpoint ${ROOM_URL}/2"
+sleep(3)
 curl "${ROOM_URL}/2"
 echo -e "\n"
 
 
 echo "Getting information about room with id = 3"
 echo "Sending get request to endpoint ${ROOM_URL}/3"
+sleep(3)
 curl "${ROOM_URL}/3"
 echo -e "\n\n"
 
@@ -193,17 +205,20 @@ echo "------------------------------------------------------------------"
 
 echo "Getting information about seat availability in screening 5's room"
 echo "Sending get request to endpoint ${SEAT_AVEILABILITY_URL}/5"
+sleep(3)
 curl "${SEAT_AVEILABILITY_URL}/5"
 echo -e "\n"
 
 echo "Getting information about seat availability in screening 6's room"
 echo "Sending get request to endpoint ${SEAT_AVEILABILITY_URL}/6"
+sleep(3)
 curl "${SEAT_AVEILABILITY_URL}/6"
 echo -e "\n"
 
 
 echo "Getting information about seat availability in screening 7's room"
 echo "Sending get request to endpoint ${SEAT_AVEILABILITY_URL}/7"
+sleep(3)
 curl "${SEAT_AVEILABILITY_URL}/7"
 echo -e "\n\n"
 
