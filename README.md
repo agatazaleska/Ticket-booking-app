@@ -28,6 +28,32 @@ The application handles polish characters properly.
 
 
 
+### Building and running
+
+##### Prerequisites
+
+Before running the project be sure that you have installed:
+
+1. Docker
+2. Java Development Kit (JDK) (Version 17)
+3. Git (for cloning the repository)
+
+##### Building and running instructions
+
+To build and run the application:
+
+1.  Clone the repo
+2.  Navigate to `[PATH_TO_REPO]/scripts`
+3.  Modify script permissions by entering `chmod +x build-and-run.sh`
+4.  Launch the script `build-and-run.sh`
+
+The script initializes the docker MySQL container and fills the database with some sample data.
+Then it builds and runs the application.
+
+To gain access to MySQL session, launch `scripts/sql-docker-session.sh`
+
+
+
 ### Use cases
 
 **The user selects the day and the time when he/she would like to see the movie.**
@@ -90,41 +116,6 @@ Reservation and screening id, customer data, total cost, expiration time.
 
 
 
-### Building and running
-
-##### Prerequisites
-
-Before running the project be sure that you have installed:
-
-1. MySQL Server (Version 5.7 or higher recommended)
-2. Java Development Kit (JDK) (Version 17)
-3. Git (for cloning the repository)
-
-
-
-**Database setup**
-
-1. Clone the repo
-2. Navigate to `[PATH_TO_REPO]/Ticket-booking-spring-app`
-3. Run `docker-compose up -d db`
-
-
-
-##### Building and running instructions
-
-To build and run the application:
-
-1.  Navigate to `[PATH_TO_REPO]/scripts`
-2. Modify script permissions by entering `chmod +x build-and-run.sh`
-3. Launch the script `build-and-run.sh`
-
-The script initializes the docker MySQL container and fills the database with some sample data.
-Then it builds and runs the application.
-
-To gain access to MySQL session, launch `scripts/sql-docker-session.sh`
-
-
-
 ### Use case demo
 
 The use case demo presents the application's key functionalities:
@@ -135,7 +126,9 @@ The use case demo presents the application's key functionalities:
 - checking seat availability for specific screenings, providing a snapshot of current bookings.
 
 The provided script utilizes cURL to access the endpoints.
-It also resets the data in the database
+It also resets the data in the database.
+
+**Make sure to run the use case demo while the app is running!**
 
 To launch the use case demo:
 

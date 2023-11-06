@@ -10,7 +10,7 @@ services:
       - MYSQL_USER=cinemauser
       - MYSQL_PASSWORD=cinemauser
     ports:
-      - "3306:3306"
+      - "3319:3306"
     volumes:
       - ./src/main/resources/sql:/docker-entrypoint-initdb.d
 
