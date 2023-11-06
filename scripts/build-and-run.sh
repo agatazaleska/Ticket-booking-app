@@ -4,23 +4,12 @@
 PROJECT_DIR="../Ticket-booking-spring-app"
 cd "$PROJECT_DIR"
 
-# create maven package
-./mvnw package
+echo "Starting MySQL container..."
+docker-compose up -d mysql
 
-# move into the target directory
-cd ./target
+echo "Waiting for MySQL..."
+sleep 10
 
-# finding the .jar file
-jarfile=$(find . -maxdepth 1 -type f -name "*.jar" | head -n 1)
+echo "Starting spring application..."
+./mvnw spring-boot:run
 
-# running the app
-if [[ -f "$jarfile" ]]; then
-    echo "Running $jarfile..."
-    java -jar "$jarfile"
-else
-    echo "Could not find the .jar file."
-fi
-
-# initializing the database
-
-# filling the tables with data
