@@ -59,9 +59,9 @@ results in the system providing basic information about the chosen screening.
 Furthermore, the user can retrieve information about the room in which the chosen screening is played
 and the seats availability for this screening. For example, sending a GET request to
 
-`http://localhost:8080/room_api/rooms/5`
+`http://localhost:8080/room_api/rooms/3`
 
-results in getting some basic information about the room the chosen screening (with id = 5) is played in.
+results in getting some basic information about the room with id=3 is played in.
 Sending a GET request to
 
 `http://localhost:8080/seat_availability_api/seat_availabilities/5`
@@ -72,7 +72,21 @@ results in getting information about seat availability for this screening.
 
 **The user chooses seats, and gives the name of the person doing the reservation (name and surname).**
 
+The user can make a reservation by sending a POST request to
+
+`http://localhost:8080/reservation_api/reservation/5`
+
+The user provides: requested screening id, requested seats (seat row + seat number + ticket type)
+and customer data (name + surname).
+
+The system processes the reservation.
+
+
+
 **The system gives back the total amount to pay and reservation expiration time.**
+
+If the reservation can be made (seats are available, user data is correct, etc) the system responds with:
+Reservation and screening id, customer data, total cost, expiration time.
 
 
 
@@ -90,10 +104,9 @@ Before running the project be sure that you have installed:
 
 **Database setup**
 
-1. Make sure that your MySQL server is up and running, or launch it with `sudo service mysql start`
-2. Clone the repo
-3. Navigate to `[PATH_TO_REPO]/Ticket-booking-spring-app/src/main/resources/sql`
-4. Create the database and user by running `mysql -u root -p < db_init.sql`
+1. Clone the repo
+2. Navigate to `[PATH_TO_REPO]/Ticket-booking-spring-app`
+3. Run `docker-compose up -d db`
 
 
 
@@ -103,9 +116,12 @@ To build and run the application:
 
 1.  Navigate to `[PATH_TO_REPO]/scripts`
 2. Modify script permissions by entering `chmod +x build-and-run.sh`
-3. Launch the script `scripts/build-and-run.sh`
+3. Launch the script `build-and-run.sh`
 
-The script initializes the database with some sample data and builds and runs the application.
+The script initializes the docker MySQL container and fills the database with some sample data.
+Then it builds and runs the application.
+
+To gain access to MySQL session, launch `scripts/sql-docker-session.sh`
 
 
 
@@ -119,6 +135,7 @@ The use case demo presents the application's key functionalities:
 - checking seat availability for specific screenings, providing a snapshot of current bookings.
 
 The provided script utilizes cURL to access the endpoints.
+It also resets the data in the database
 
 To launch the use case demo:
 
