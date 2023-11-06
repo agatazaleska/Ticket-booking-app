@@ -61,7 +61,7 @@ public class SeatAvailabilityServiceImpl implements SeatAvailabilityService {
                            screeningId,
                            seat.getRoomNumber(),
                            seat.getRow(),
-                           seat.getRoomNumber(),
+                           seat.getSeatNumber(),
                            availabilities.get(seat.getId())
                     )
             );
