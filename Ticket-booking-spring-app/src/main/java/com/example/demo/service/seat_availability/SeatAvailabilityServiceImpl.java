@@ -5,6 +5,7 @@ import com.example.demo.entity.Screening;
 import com.example.demo.entity.Seat;
 import com.example.demo.entity.SeatAvailability;
 import com.example.demo.exception.DataBaseException;
+import com.example.demo.exception.ScreeningException;
 import com.example.demo.service.screening.ScreeningService;
 import com.example.demo.service.seat.SeatService;
 import com.example.demo.service.seat_availability.SeatAvailabilityService;
@@ -51,7 +52,7 @@ public class SeatAvailabilityServiceImpl implements SeatAvailabilityService {
         Map<Integer, Boolean> availabilities = seatToAvailabilityByScreeningId(screeningId);
         Optional<Screening> maybeScreening = screeningService.findById(screeningId);
         if (maybeScreening.isEmpty()) {
-            throw new DataBaseException("Database Error. Room for this screening not found.");
+            throw new ScreeningException("Error. Screening not found.");
         }
         List<Seat> seats = seatService.findByRoomNumber(maybeScreening.get().getRoomNumber());
         List<SeatAvailabilityResponse> result = new ArrayList<>();

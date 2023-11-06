@@ -47,4 +47,15 @@ public class RestExceptionHandler {
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleException(Exception exc) {
+        ErrorResponse error = new ErrorResponse();
+        error.setMessage(exc.getMessage());
+        error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        error.setTimestamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
