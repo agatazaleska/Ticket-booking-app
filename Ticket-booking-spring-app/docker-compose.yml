@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cinema
+      - MYSQL_USER=cinemauser
+      - MYSQL_PASSWORD=cinemauser
+      - MYSQL_CHARSET=utf8mb4
+      - MYSQL_COLLATION=utf8mb4_unicode_ci
+    ports:
+      - "3319:3306"
+    volumes:
+      - ./src/main/resources/sql:/docker-entrypoint-initdb.d
+      - ./mysqlconfig.cnf:/etc/mysql/conf.d/custom.cnf
